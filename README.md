@@ -115,7 +115,7 @@
   <section id="contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:shahzeenakhund2001@gmail.com">shahzeenakhund2001@gmail.com</a></p>
-    <p>Socials: <a href="https://www.fiverr.com/shahzeenakhund">Fiverr</a> | <a href="https://www.linkedin.com/in/shahzeenakhund">LinkedIn</a> | <a href="https://www.instagram.com/shahzeenakhund">Instagram</a></p>
+    <p>Socials: <a href="https://www.fiverr.com/shahzeenakhund1">Fiverr</a> | <a href="https://www.linkedin.com/in/shahzeenakhund">LinkedIn</a> | <a href="https://www.instagram.com/shahzeenakhund">Instagram</a></p> 
   </section>
 
   <footer>
