@@ -1,125 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DataWebX - AI Powered Digital Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0e0e0e;
-      color: #f0f0f0;
-      line-height: 1.6;
-    }
-    header {
-      background: #121212;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      color: #00d2ff;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      color: #a8a8a8;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      background: #1a1a1a;
-    }
-    nav a {
-      color: #00d2ff;
-      text-decoration: none;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .hero {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .services ul {
-      list-style: none;
-      margin-top: 1rem;
-    }
-    .services li {
-      background: #1f1f1f;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 4px solid #00d2ff;
-    }
-    footer {
-      background: #121212;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #a8a8a8;
-    }
-    .cta-button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.6rem;
-      background: #00d2ff;
-      color: #000;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 600;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DataWebX — AI-Powered Digital Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --primary: #1a1a2e;
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+  --accent-soft: #eef2ff;
+  --gold: #f59e0b;
+  --text: #1e1e2e;
+  --muted: #64748b;
+  --light: #f8fafc;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --border-dark: #cbd5e1;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+  --shadow-xl: 0 32px 80px rgba(0,0,0,0.15);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; letter-spacing: -0.01em; }
+a { text-decoration: none; color: inherit; transition: color 0.2s; }
+
+/* TOPBAR */
+.topbar { background: var(--primary); color: rgba(255,255,255,0.7); font-size: 0.78rem; padding: 0.55rem 0; text-align: center; letter-spacing: 0.02em; }
+.topbar a { color: var(--gold); font-weight: 600; }
+.topbar a:hover { color: #fcd34d; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.4rem; }
+.nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-bottom: 2px; }
+.nav-menu { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+.nav-menu a { font-size: 0.88rem; font-weight: 500; color: var(--muted); padding: 0.5rem 0.9rem; border-radius: 8px; transition: all 0.2s; }
+.nav-menu a:hover { color: var(--primary); background: var(--light); }
+.nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+.btn-ghost { font-size: 0.88rem; font-weight: 600; color: var(--accent); padding: 0.5rem 1.1rem; border-radius: 8px; border: 1.5px solid var(--accent); transition: all 0.2s; }
+.btn-ghost:hover { background: var(--accent); color: #fff; }
+.btn-solid { font-size: 0.88rem; font-weight: 600; color: #fff; padding: 0.6rem 1.4rem; border-radius: 8px; background: var(--accent); transition: all 0.2s; box-shadow: 0 2px 8px rgba(79,70,229,0.3); }
+.btn-solid:hover { background: #4338ca; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 22px; height: 2px; background: var(--primary); border-radius: 2px; display: block; transition: all 0.3s; }
+
+/* HERO */
+.hero { background: var(--primary); display: grid; grid-template-columns: 1fr 1fr; min-height: 92vh; align-items: center; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(79,70,229,0.18) 0%, transparent 55%), radial-gradient(circle at 80% 20%, rgba(99,102,241,0.1) 0%, transparent 45%); pointer-events: none; }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+.hero-left { padding: 5rem 4rem 5rem 6rem; position: relative; z-index: 2; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(79,70,229,0.2); border: 1px solid rgba(79,70,229,0.4); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.77rem; font-weight: 600; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; animation: fadeUp 0.7s ease both; }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.hero-title { font-size: clamp(2.6rem, 4.5vw, 4rem); color: #fff; margin-bottom: 1.4rem; font-weight: 700; animation: fadeUp 0.7s 0.1s ease both; }
+.hero-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px rgba(165,180,252,0.65); }
+.hero-title .hl { position: relative; display: inline-block; }
+.hero-title .hl::after { content:''; position:absolute; bottom:2px; left:0; right:0; height:3px; background:var(--gold); border-radius:2px; }
+.hero-desc { color: rgba(255,255,255,0.58); font-size: 1rem; font-weight: 300; max-width: 460px; margin-bottom: 2.4rem; line-height: 1.85; animation: fadeUp 0.7s 0.2s ease both; }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; animation: fadeUp 0.7s 0.3s ease both; }
+.hbtn-primary { background: var(--gold); color: var(--primary); font-weight: 700; font-size: 0.95rem; padding: 0.9rem 2rem; border-radius: 10px; transition: all 0.2s; box-shadow: 0 4px 20px rgba(245,158,11,0.35); }
+.hbtn-primary:hover { background: #fbbf24; transform: translateY(-2px); }
+.hbtn-secondary { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82); font-weight: 500; font-size: 0.95rem; padding: 0.9rem 2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); transition: all 0.2s; }
+.hbtn-secondary:hover { background: rgba(255,255,255,0.13); }
+.hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
+.h-stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; display: block; line-height: 1; }
+.h-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+.h-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
+
+/* Hero Right */
+.hero-right { position: relative; height: 100%; min-height: 92vh; background: linear-gradient(160deg, #16213e 0%, #0f3460 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-visual { position: relative; width: 370px; z-index: 2; }
+.hcard { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 1.8rem; color: #fff; }
+.hcard-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.hcard-avatar { width: 44px; height: 44px; border-radius: 12px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.hcard-title { font-size: 0.93rem; font-weight: 700; }
+.hcard-sub { font-size: 0.73rem; color: rgba(255,255,255,0.45); }
+.hcard-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 1.2rem; }
+.hcs { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 0.9rem; border: 1px solid rgba(255,255,255,0.07); }
+.hcs .n { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; display: block; }
+.hcs .l { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+.bar-row { margin-bottom: 0.6rem; }
+.bar-label { font-size: 0.73rem; color: rgba(255,255,255,0.45); display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+.bar-track { height: 5px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 100px; }
+.bf1 { background: var(--gold); width: 90%; }
+.bf2 { background: #a5b4fc; width: 85%; }
+.bf3 { background: #34d399; width: 100%; }
+.float-card { position: absolute; background: #fff; border-radius: 14px; padding: 0.9rem 1.1rem; box-shadow: 0 12px 40px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 0.6rem; }
+.fc1 { bottom: -1rem; left: -3rem; animation: floatA 3s ease-in-out infinite alternate; }
+.fc2 { top: -1rem; right: -3rem; animation: floatA 3s 1.5s ease-in-out infinite alternate; }
+@keyframes floatA { from{transform:translateY(0)} to{transform:translateY(-10px)} }
+.fc-icon { font-size: 1.3rem; }
+.fc-n { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--primary); line-height: 1; }
+.fc-s { font-size: 0.7rem; color: var(--muted); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* LOGOS */
+.logos-bar { background: var(--light); border-bottom: 1px solid var(--border); padding: 1.6rem 2rem; }
+.logos-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; justify-content: center; }
+.logos-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.logos-list { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
+.logo-item { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--border-dark); transition: color 0.2s; }
+.logo-item:hover { color: var(--muted); }
+
+/* SECTIONS */
+section { padding: 6rem 2rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 1rem; }
+.section-eyebrow::before { content:''; width: 20px; height: 2px; background: var(--accent); border-radius: 2px; }
+.section-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); color: var(--primary); margin-bottom: 1rem; }
+.section-sub { color: var(--muted); font-size: 0.97rem; max-width: 520px; }
+
+/* SERVICES */
+#services { background: var(--white); }
+.svc-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+.svc-right-text { color: var(--muted); font-size: 0.93rem; line-height: 1.8; margin-bottom: 1.2rem; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.svc-card { background: var(--white); padding: 2.3rem 2rem; transition: background 0.3s; position: relative; cursor: default; }
+.svc-card:hover { background: var(--light); }
+.svc-card::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:var(--accent); transition: width 0.4s ease; }
+.svc-card:hover::after { width: 100%; }
+.svc-num { font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1.4rem; }
+.svc-icon { width: 54px; height: 54px; border-radius: 14px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.3rem; transition: background 0.3s, transform 0.3s; }
+.svc-card:hover .svc-icon { background: var(--accent); transform: scale(1.05); }
+.svc-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.55rem; }
+.svc-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+.svc-more { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-top: 1.1rem; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+.svc-card:hover .svc-more { opacity: 1; transform: translateX(0); }
+
+/* ABOUT */
+#about { background: var(--primary); color: #fff; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: center; }
+.about-img-block { width: 100%; aspect-ratio: 1/1.1; border-radius: var(--radius-lg); background: linear-gradient(145deg, rgba(79,70,229,0.28), rgba(99,102,241,0.1)); border: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 6rem; position: relative; overflow: hidden; }
+.about-img-block::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 70%, rgba(79,70,229,0.25), transparent 60%); }
+.about-badge { position: absolute; background: var(--white); border-radius: 14px; padding: 0.9rem 1.3rem; box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 0.8rem; }
+.about-badge.b1 { bottom: -1.5rem; right: -2rem; }
+.about-badge.b2 { top: -1.5rem; left: -2rem; }
+.bnum { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.blabel { font-size: 0.73rem; color: var(--muted); font-weight: 500; }
+.about-content .section-eyebrow { color: #a5b4fc; }
+.about-content .section-eyebrow::before { background: #a5b4fc; }
+.about-content h2 { color: #fff; margin-bottom: 1.4rem; font-size: clamp(1.7rem,3vw,2.4rem); }
+.about-content p { color: rgba(255,255,255,0.58); font-size: 0.93rem; line-height: 1.85; margin-bottom: 1rem; }
+.skills-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.8rem 0; }
+.chip { padding: 0.38rem 0.95rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.14); font-size: 0.79rem; font-weight: 500; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.05); transition: all 0.2s; }
+.chip:hover { border-color: rgba(165,180,252,0.45); color: #a5b4fc; }
+.about-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.abtn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.5rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; transition: all 0.2s; }
+.abtn.gold { background: var(--gold); color: var(--primary); }
+.abtn.gold:hover { background: #fbbf24; transform: translateY(-1px); }
+.abtn.outline { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.12); }
+.abtn.outline:hover { background: rgba(255,255,255,0.13); }
+
+/* PROCESS */
+#process { background: var(--light); }
+.process-header { text-align: center; max-width: 520px; margin: 0 auto 4rem; }
+.process-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.process-row::before { content:''; position:absolute; top:26px; left:12%; right:12%; height:1px; background:var(--border); z-index:0; }
+.proc-step { padding: 0 1.5rem; text-align: center; position: relative; z-index: 1; }
+.proc-circle { width: 54px; height: 54px; border-radius: 50%; background: var(--white); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.4rem; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--muted); transition: all 0.3s; box-shadow: var(--shadow-sm); }
+.proc-step:hover .proc-circle { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 4px 20px rgba(79,70,229,0.3); }
+.proc-step h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+.proc-step p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+
+/* PORTFOLIO */
+#portfolio { background: var(--white); }
+.port-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+.port-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pf { padding: 0.45rem 1.1rem; border-radius: 8px; border: 1.5px solid var(--border); background: transparent; font-size: 0.82rem; font-weight: 600; color: var(--muted); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; }
+.pf.active, .pf:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.port-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.port-card { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); background: var(--white); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; cursor: pointer; }
+.port-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: transparent; }
+.port-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+.pt1{background:linear-gradient(135deg,#0f172a,#1e3a5f)}.pt2{background:linear-gradient(135deg,#1a0533,#4c1d95)}.pt3{background:linear-gradient(135deg,#0c2340,#1e40af)}.pt4{background:linear-gradient(135deg,#0d1f0d,#14532d)}.pt5{background:linear-gradient(135deg,#2d1515,#7f1d1d)}.pt6{background:linear-gradient(135deg,#1a1a0f,#422006)}
+.port-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
+.port-card:hover .port-overlay { background: rgba(79,70,229,0.3); }
+.port-view { background: #fff; color: var(--accent); padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.8rem; font-weight: 700; opacity:0; transform:translateY(10px); transition:all 0.3s; }
+.port-card:hover .port-view { opacity:1; transform:translateY(0); }
+.port-body { padding: 1.5rem; }
+.port-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.35rem; }
+.port-body h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem; }
+.port-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+/* TESTIMONIALS */
+#testimonials { background: var(--light); }
+.testi-hd { text-align: center; max-width: 520px; margin: 0 auto 4rem; }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.testi-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.2rem; transition: box-shadow 0.3s, border-color 0.3s; }
+.testi-card:hover { box-shadow: var(--shadow-lg); border-color: rgba(79,70,229,0.2); }
+.testi-qmark { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 1; color: var(--accent-soft); display: block; margin-bottom: 0.8rem; }
+.testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.9rem; }
+.testi-text { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.8rem; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 0.75rem; }
+.t-av { width: 42px; height: 42px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.t-name { font-size: 0.9rem; font-weight: 700; color: var(--primary); }
+.t-role { font-size: 0.74rem; color: var(--muted); }
+
+/* PRICING */
+#pricing { background: var(--white); }
+.pricing-hd { text-align: center; max-width: 520px; margin: 0 auto 4rem; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: start; }
+.price-card { border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem 2rem; background: var(--white); position: relative; transition: box-shadow 0.3s, transform 0.3s; }
+.price-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.price-card.feat { border-color: var(--accent); background: var(--primary); transform: scale(1.02); }
+.price-card.feat:hover { transform: scale(1.02) translateY(-4px); }
+.feat-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--primary); font-size: 0.71rem; font-weight: 700; padding: 0.28rem 1rem; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.price-tier { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--muted); margin-bottom: 1.1rem; }
+.price-card.feat .price-tier { color: rgba(255,255,255,0.45); }
+.price-amount { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 0.5rem; }
+.price-card.feat .price-amount { color: #fff; }
+.price-amount sup { font-size: 1.2rem; vertical-align: super; }
+.price-note { font-size: 0.84rem; color: var(--muted); margin-bottom: 1.8rem; }
+.price-card.feat .price-note { color: rgba(255,255,255,0.45); }
+.price-hr { height: 1px; background: var(--border); margin-bottom: 1.8rem; }
+.price-card.feat .price-hr { background: rgba(255,255,255,0.1); }
+.price-feats { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
+.price-feats li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.87rem; color: var(--text); }
+.price-card.feat .price-feats li { color: rgba(255,255,255,0.78); }
+.chk { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 0.62rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+.price-card.feat .chk { background: rgba(255,255,255,0.1); color: var(--gold); }
+.price-btn { display: block; text-align: center; padding: 0.85rem; border-radius: 10px; font-size: 0.91rem; font-weight: 700; transition: all 0.2s; border: 1.5px solid transparent; }
+.price-btn.outline { border-color: var(--border); color: var(--primary); }
+.price-btn.outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.price-btn.gold { background: var(--gold); color: var(--primary); box-shadow: 0 4px 16px rgba(245,158,11,0.3); }
+.price-btn.gold:hover { background: #fbbf24; transform: translateY(-1px); }
+
+/* FAQ */
+#faq { background: var(--light); }
+.faq-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; }
+.faq-aside h2 { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+.faq-aside p { color: var(--muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 2rem; }
+.faq-prompt { display: flex; align-items: center; gap: 1rem; background: var(--accent-soft); border-radius: 14px; padding: 1.1rem 1.4rem; border: 1px solid rgba(79,70,229,0.14); }
+.faq-prompt .pi { font-size: 1.8rem; }
+.faq-prompt .pt { font-size: 0.84rem; color: var(--primary); }
+.faq-prompt .pt a { color: var(--accent); font-weight: 600; }
+.faq-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.faq-item { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+.faq-item.open { border-color: rgba(79,70,229,0.3); box-shadow: 0 4px 16px rgba(79,70,229,0.07); }
+.faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 600; font-size: 0.92rem; color: var(--primary); user-select: none; }
+.faq-arr { width: 28px; height: 28px; border-radius: 8px; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--muted); transition: all 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-arr { background: var(--accent); color: #fff; transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+.faq-item.open .faq-a { max-height: 220px; padding: 0 1.5rem 1.4rem; }
+
+/* CONTACT */
+#contact { background: var(--primary); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 6rem; align-items: start; }
+.contact-info .section-eyebrow { color: #a5b4fc; }
+.contact-info .section-eyebrow::before { background: #a5b4fc; }
+.contact-info h2 { color: #fff; margin-bottom: 1.1rem; font-size: clamp(1.7rem,3vw,2.4rem); }
+.contact-info > p { color: rgba(255,255,255,0.53); font-size: 0.92rem; line-height: 1.85; margin-bottom: 2.5rem; }
+.ch-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.ch-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); transition: all 0.2s; color: rgba(255,255,255,0.8); }
+.ch-link:hover { background: rgba(255,255,255,0.09); border-color: rgba(165,180,252,0.3); transform: translateX(4px); }
+.ch-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(79,70,229,0.25); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+.ch-label { font-size: 0.86rem; font-weight: 600; color: #fff; }
+.ch-val { font-size: 0.76rem; color: rgba(255,255,255,0.38); }
+.form-wrap { background: var(--white); border-radius: 24px; padding: 2.8rem; box-shadow: var(--shadow-xl); }
+.form-heading { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 0.35rem; }
+.form-subheading { font-size: 0.84rem; color: var(--muted); margin-bottom: 2rem; }
+.fg { margin-bottom: 1.25rem; }
+.fg label { display: block; font-size: 0.77rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.48rem; }
+.fg input, .fg select, .fg textarea { width: 100%; background: var(--light); border: 1.5px solid var(--border); border-radius: 10px; padding: 0.78rem 1rem; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,0.08); background: #fff; }
+.fg textarea { min-height: 108px; resize: vertical; }
+.fg select option { background: #fff; }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.submit-btn { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 1rem; font-size: 0.97rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; box-shadow: 0 4px 20px rgba(79,70,229,0.3); margin-top: 0.4rem; }
+.submit-btn:hover { background: #4338ca; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(79,70,229,0.4); }
+
+/* FOOTER */
+footer { background: #08080f; border-top: 1px solid rgba(255,255,255,0.05); padding: 4rem 2rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; display: block; }
+.footer-desc { font-size: 0.84rem; line-height: 1.75; color: rgba(255,255,255,0.38); max-width: 270px; margin-bottom: 1.5rem; }
+.footer-soc { display: flex; gap: 0.55rem; }
+.fsoc { width: 36px; height: 36px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: rgba(255,255,255,0.45); transition: all 0.2s; font-weight: 700; }
+.fsoc:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.footer-col h5 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { font-size: 0.84rem; color: rgba(255,255,255,0.38); transition: color 0.2s; }
+.footer-col a:hover { color: rgba(255,255,255,0.82); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.79rem; color: rgba(255,255,255,0.28); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* TOAST */
+#toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--primary); border: 1px solid rgba(79,70,229,0.4); border-radius: 14px; padding: 1.1rem 1.8rem; color: #fff; font-size: 0.88rem; font-weight: 500; z-index: 9999; box-shadow: var(--shadow-xl); transform: translateY(80px); opacity: 0; transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+#toast.show { transform: translateY(0); opacity: 1; }
+
+/* MOBILE */
+@media(max-width:900px){
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 5rem 2rem 3rem; }
+  .hero-right { min-height: 380px; }
+  .hero-visual { width: 280px; }
+  .fc1,.fc2 { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-img-block { display: none; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .faq-layout { grid-template-columns: 1fr; }
+  .svc-header { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .port-grid { grid-template-columns: repeat(2,1fr); }
+  .testi-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card.feat { transform: none; }
+  .process-row { grid-template-columns: 1fr 1fr; }
+  .process-row::before { display: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-menu { display: none; }
+  .hamburger { display: flex; }
+}
+@media(max-width:560px){
+  .port-grid { grid-template-columns: 1fr; }
+  .fg-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>DataWebX</h1>
-    <p>Your digital partner for AI-powered solutions & freelance services</p>
-  </header>
 
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- TOPBAR -->
+<div class="topbar">🌟 Top 10% Fiverr Freelancer · AI-Powered Digital Agency · <a href="#contact">Book a Free Consultation →</a></div>
 
-  <section class="hero">
-    <h2>Empowering Digital Growth with Smart AI + Human Creativity</h2>
-    <a href="#contact" class="cta-button">Let’s Work Together</a>
-  </section>
-
-  <section id="services" class="services">
-    <h2>Services</h2>
-    <ul>
-      <li>AI Research & Automation Tools</li>
-      <li>Web Development & Design</li>
-      <li>Branding & Digital Strategy</li>
-      <li>Freelance Consulting for Startups</li>
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">DataWebX<span class="nav-logo-dot"></span></a>
+    <ul class="nav-menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
-  </section>
+    <div class="nav-actions">
+      <a href="https://www.fiverr.com/shahzeenakhund1" target="_blank" class="btn-ghost">Hire on Fiverr</a>
+      <a href="#contact" class="btn-solid">Get in Touch</a>
+    </div>
+    <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>Led by Shahzeen Akhund — Top 10% Fiverr freelancer, digital marketing expert, and founder of <strong>DataWebX</strong>.</p>
-  </section>
+<!-- HERO -->
+<div id="home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span class="hero-dot"></span> AI-Powered Digital Agency</div>
+      <h1 class="hero-title">Smarter Digital<br/>Growth with <span class="hl">AI</span><br/><em>+ Human</em> Expertise</h1>
+      <p class="hero-desc">DataWebX delivers AI-driven web solutions, branding, automation, and analytics — helping businesses grow smarter and faster in the digital age.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="hbtn-primary">Start a Project</a>
+        <a href="#portfolio" class="hbtn-secondary">View Portfolio →</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="h-stat-num">75+</span><div class="h-stat-label">Projects Delivered</div></div>
+        <div class="h-divider"></div>
+        <div><span class="h-stat-num">Top 10%</span><div class="h-stat-label">On Fiverr</div></div>
+        <div class="h-divider"></div>
+        <div><span class="h-stat-num">100%</span><div class="h-stat-label">Satisfaction Rate</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hcard">
+          <div class="hcard-header">
+            <div class="hcard-avatar">🤖</div>
+            <div>
+              <div class="hcard-title">DataWebX Dashboard</div>
+              <div class="hcard-sub">AI Performance Overview</div>
+            </div>
+          </div>
+          <div class="hcard-stats">
+            <div class="hcs"><span class="n">75+</span><div class="l">Projects Done</div></div>
+            <div class="hcs"><span class="n">4.9 ★</span><div class="l">Avg. Rating</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>AI Automation</span><span>90%</span></div>
+            <div class="bar-track"><div class="bar-fill bf1"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Web Development</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill bf2"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Client Satisfaction</span><span>100%</span></div>
+            <div class="bar-track"><div class="bar-fill bf3"></div></div>
+          </div>
+        </div>
+        <div class="float-card fc1">
+          <div class="fc-icon">🚀</div>
+          <div><div class="fc-n">5-Day</div><div class="fc-s">Avg. Delivery</div></div>
+        </div>
+        <div class="float-card fc2">
+          <div class="fc-icon">⭐</div>
+          <div><div class="fc-n">Top 10%</div><div class="fc-s">Fiverr Seller</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:shahzeenakhund2001@gmail.com">shahzeenakhund2001@gmail.com</a></p>
-    <p>Socials: <a href="https://www.fiverr.com/shahzeenakhund1">Fiverr</a> | <a href="https://www.linkedin.com/in/shahzeenakhund">LinkedIn</a> | <a href="https://www.instagram.com/shahzeenakhund">Instagram</a></p> 
-  </section>
+<!-- LOGOS BAR -->
+<div class="logos-bar">
+  <div class="logos-inner">
+    <span class="logos-label">Trusted by clients from</span>
+    <div class="logos-list">
+      <span class="logo-item">Fiverr</span>
+      <span class="logo-item">LinkedIn</span>
+      <span class="logo-item">Upwork</span>
+      <span class="logo-item">Startups.pk</span>
+      <span class="logo-item">NGOs</span>
+      <span class="logo-item">Healthcare</span>
+      <span class="logo-item">E-Commerce</span>
+    </div>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 DataWebX. All Rights Reserved.
-  </footer>
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="svc-header reveal">
+      <div>
+        <span class="section-eyebrow">What We Offer</span>
+        <h2 class="section-title">End-to-End Digital<br/>Services Built to Scale</h2>
+      </div>
+      <div>
+        <p class="svc-right-text">From AI automation to beautiful web design — every service is tailored to your goals, audience, and budget.</p>
+        <a href="#contact" class="btn-solid">Get a Free Quote</a>
+      </div>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <div class="svc-icon">🤖</div>
+        <h3>AI Research & Automation</h3>
+        <p>Custom LLM integrations, research automation tools, and AI-powered workflows that accelerate decisions and save hours every week.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">💻</div>
+        <h3>Web Development & Design</h3>
+        <p>Pixel-perfect, responsive websites and web apps built with modern frameworks, strong UX principles, and conversion in mind.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">🎨</div>
+        <h3>Branding & Digital Strategy</h3>
+        <p>Complete brand identity systems — logo, color language, and tone — paired with a data-driven digital growth strategy.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <div class="svc-icon">📱</div>
+        <h3>Social Media Management</h3>
+        <p>Strategic content creation, scheduling, community engagement, and analytics tracking across LinkedIn, Instagram, and beyond.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">05</div>
+        <div class="svc-icon">📊</div>
+        <h3>Data Analytics & Dashboards</h3>
+        <p>Interactive Streamlit and Power BI dashboards that turn raw data into clear, actionable visual insights for your team.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">06</div>
+        <div class="svc-icon">🚀</div>
+        <h3>Startup Consulting</h3>
+        <p>Strategic advisory for early-stage startups — pitch decks, go-to-market plans, digital operations, and investor-ready materials.</p>
+        <span class="svc-more">Learn more →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-block">👩‍💻</div>
+        <div class="about-badge b1"><div><div class="bnum">75+</div><div class="blabel">Global Projects</div></div></div>
+        <div class="about-badge b2"><div><div class="bnum">4.9 ★</div><div class="blabel">Average Rating</div></div></div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-eyebrow">About the Founder</span>
+        <h2>I'm Shahzeen Akhund — Founder &amp; Lead Consultant at DataWebX</h2>
+        <p>I'm a Data Science researcher, digital strategist, and Top 10% Fiverr freelancer with a background spanning HR communications, AI research, and digital branding. My work bridges analytical precision with creative storytelling.</p>
+        <p>With 75+ global projects delivered across 4 continents, I've helped startups, NGOs, healthcare organizations, and established businesses transform their digital presence using AI-first strategies.</p>
+        <p>Currently researching LLM adoption — and using those same AI capabilities to build smarter solutions for businesses worldwide.</p>
+        <div class="skills-chips">
+          <span class="chip">Machine Learning</span>
+          <span class="chip">LLM Integration</span>
+          <span class="chip">Digital Branding</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">Data Visualization</span>
+          <span class="chip">Research & Analytics</span>
+          <span class="chip">Social Media</span>
+          <span class="chip">Startup Strategy</span>
+        </div>
+        <div class="about-btns">
+          <a href="#contact" class="abtn gold">Work With Me</a>
+          <a href="https://www.linkedin.com/in/shahzeenakhund" target="_blank" class="abtn outline">View LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">A Simple, Transparent Process</h2>
+      <p class="section-sub" style="margin:0 auto; text-align:center;">No guesswork. Clear steps from discovery to delivery.</p>
+    </div>
+    <div class="process-row">
+      <div class="proc-step reveal">
+        <div class="proc-circle">01</div>
+        <h3>Discovery Call</h3>
+        <p>Free 30-minute consultation to align on your goals, audience, and what success looks like.</p>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-circle">02</div>
+        <h3>Strategy & Proposal</h3>
+        <p>Tailored strategy with detailed scope, timeline, and deliverables for your review and approval.</p>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-circle">03</div>
+        <h3>Build & Iterate</h3>
+        <p>Work begins with regular updates and feedback loops so you're always in the loop.</p>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-circle">04</div>
+        <h3>Launch & Support</h3>
+        <p>We go live together. Post-launch support ensures smooth operations and full team onboarding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="port-top reveal">
+      <div>
+        <span class="section-eyebrow">Portfolio</span>
+        <h2 class="section-title">Selected Work</h2>
+      </div>
+      <div class="port-filters">
+        <button class="pf active">All</button>
+        <button class="pf">AI & Data</button>
+        <button class="pf">Web Design</button>
+        <button class="pf">Branding</button>
+      </div>
+    </div>
+    <div class="port-grid">
+      <div class="port-card reveal">
+        <div class="port-thumb pt1"><div class="port-overlay"><span class="port-view">View Project</span></div>🧠</div>
+        <div class="port-body"><div class="port-cat">AI & Research</div><h3>PakHealthAI Dashboard</h3><p>Streamlit dashboard visualizing LLM adoption across hospitals — built for health policy makers.</p></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-thumb pt2"><div class="port-overlay"><span class="port-view">View Project</span></div>🌐</div>
+        <div class="port-body"><div class="port-cat">Web Development</div><h3>SaaS Landing Page</h3><p>High-converting landing page for a B2B software startup with animated sections and pricing.</p></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-thumb pt3"><div class="port-overlay"><span class="port-view">View Project</span></div>🎯</div>
+        <div class="port-body"><div class="port-cat">Branding</div><h3>EdTech Brand Identity</h3><p>Full brand system for an online learning platform — logo, palette, typography, and brand guide.</p></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-thumb pt4"><div class="port-overlay"><span class="port-view">View Project</span></div>📈</div>
+        <div class="port-body"><div class="port-cat">Data Analytics</div><h3>E-Commerce KPI Tracker</h3><p>Power BI dashboard tracking 20+ KPIs for a retail brand, replacing manual weekly reporting.</p></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-thumb pt5"><div class="port-overlay"><span class="port-view">View Project</span></div>✍️</div>
+        <div class="port-body"><div class="port-cat">Content Strategy</div><h3>LinkedIn Growth Campaign</h3><p>6-month strategy growing a founder's profile from 800 to 5,000+ followers organically.</p></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-thumb pt6"><div class="port-overlay"><span class="port-view">View Project</span></div>⚙️</div>
+        <div class="port-body"><div class="port-cat">AI Automation</div><h3>Research Automation Bot</h3><p>Python + LLM pipeline automating academic literature search and summarization workflows.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-hd reveal">
+      <span class="section-eyebrow">Client Testimonials</span>
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-sub" style="margin:0 auto;">Real words from real clients across Fiverr, LinkedIn, and direct engagements.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="testi-qmark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Shahzeen delivered an exceptional brand identity that perfectly captured our startup's vision. Fast, communicative, and incredibly talented — will hire again.</p>
+        <div class="testi-author"><div class="t-av">A</div><div><div class="t-name">Ahmed R.</div><div class="t-role">Founder, EdTech Startup</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="testi-qmark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The Streamlit dashboard she built transformed how we present data to stakeholders. Exactly what we needed, delivered on time and within budget.</p>
+        <div class="testi-author"><div class="t-av">S</div><div><div class="t-name">Sara M.</div><div class="t-role">Operations Manager, Healthcare NGO</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="testi-qmark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Best freelancer I've worked with. Understood the brief immediately, proposed smart improvements, and the final website exceeded expectations. Highly recommended!</p>
+        <div class="testi-author"><div class="t-av">J</div><div><div class="t-name">James T.</div><div class="t-role">CEO, Digital Agency — United Kingdom</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-hd reveal">
+      <span class="section-eyebrow">Pricing</span>
+      <h2 class="section-title">Simple, Transparent Packages</h2>
+      <p class="section-sub" style="margin:0 auto;">All packages include revisions. Custom quotes available for larger projects.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount"><sup>$</sup>149</div>
+        <div class="price-note">Ideal for individuals &amp; small projects</div>
+        <div class="price-hr"></div>
+        <ul class="price-feats">
+          <li><span class="chk">✓</span> 1 core deliverable (web or brand)</li>
+          <li><span class="chk">✓</span> 2 rounds of revisions</li>
+          <li><span class="chk">✓</span> 5-day delivery</li>
+          <li><span class="chk">✓</span> Email support</li>
+        </ul>
+        <a href="#contact" class="price-btn outline">Get Started</a>
+      </div>
+      <div class="price-card feat reveal">
+        <div class="feat-badge">Most Popular</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount"><sup>$</sup>399</div>
+        <div class="price-note">Best for startups &amp; growing businesses</div>
+        <div class="price-hr"></div>
+        <ul class="price-feats">
+          <li><span class="chk">✓</span> Web + Branding + Strategy</li>
+          <li><span class="chk">✓</span> AI tool or dashboard integration</li>
+          <li><span class="chk">✓</span> Unlimited revisions</li>
+          <li><span class="chk">✓</span> 10-day delivery</li>
+          <li><span class="chk">✓</span> Priority Slack support</li>
+        </ul>
+        <a href="#contact" class="price-btn gold">Get Started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount" style="font-size:2.2rem;line-height:1.2">Custom</div>
+        <div class="price-note">Full-scale digital transformation</div>
+        <div class="price-hr"></div>
+        <ul class="price-feats">
+          <li><span class="chk">✓</span> Full-stack web application</li>
+          <li><span class="chk">✓</span> Custom AI automation pipeline</li>
+          <li><span class="chk">✓</span> Data dashboard &amp; analytics</li>
+          <li><span class="chk">✓</span> Monthly retainer option</li>
+          <li><span class="chk">✓</span> Dedicated support &amp; SLA</li>
+        </ul>
+        <a href="#contact" class="price-btn outline">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-aside reveal">
+        <span class="section-eyebrow">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Can't find what you're looking for? Reach out directly and I'll get back to you within 24 hours.</p>
+        <div class="faq-prompt">
+          <div class="pi">💬</div>
+          <div class="pt">Still have questions? <a href="mailto:shahzeenakhund2001@gmail.com">Email me directly</a> and I'll respond within 24 hours.</div>
+        </div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How do we get started? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">Simply fill out the contact form below or reach out via email. I'll schedule a free 30-minute discovery call to understand your needs before any commitment.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What if I need something not listed in your services? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">I love custom challenges! If your need spans multiple areas — such as AI + content strategy + web — reach out and I'll create a tailored proposal just for you.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Do you work with international clients? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">Absolutely. I work with clients across the US, UK, UAE, and beyond. All communication is async-friendly, and payments are accepted via Fiverr, PayPal, or bank transfer.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How many revisions are included? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">Starter packages include 2 revision rounds. Growth and Enterprise packages include unlimited revisions until you're 100% satisfied with the final output.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What's your typical turnaround time? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">Small projects typically deliver in 3–5 business days. Larger or complex projects range from 1–3 weeks depending on scope. Timelines are always agreed upfront.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Can you work on a monthly retainer basis? <span class="faq-arr">▾</span></div>
+          <div class="faq-a">Yes! Monthly retainers are available for clients who need regular content creation, social media management, data dashboards, or AI maintenance. Contact me to discuss options.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2>Let's Build Something Remarkable Together</h2>
+        <p>Have a project in mind or want to explore how AI can accelerate your business? I'd love to hear from you. Fill in the form or reach out directly.</p>
+        <div class="ch-list">
+          <a href="mailto:shahzeenakhund2001@gmail.com" class="ch-link">
+            <div class="ch-icon">✉️</div>
+            <div><div class="ch-label">Email</div><div class="ch-val">shahzeenakhund2001@gmail.com</div></div>
+          </a>
+          <a href="https://www.fiverr.com/shahzeenakhund1" target="_blank" class="ch-link">
+            <div class="ch-icon">🟢</div>
+            <div><div class="ch-label">Fiverr</div><div class="ch-val">Top 10% Seller — Hire me on Fiverr</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/shahzeenakhund" target="_blank" class="ch-link">
+            <div class="ch-icon">💼</div>
+            <div><div class="ch-label">LinkedIn</div><div class="ch-val">linkedin.com/in/shahzeenakhund</div></div>
+          </a>
+          <a href="https://www.instagram.com/shahzeenakhund" target="_blank" class="ch-link">
+            <div class="ch-icon">📸</div>
+            <div><div class="ch-label">Instagram</div><div class="ch-val">@shahzeenakhund</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="form-wrap reveal">
+        <div class="form-heading">Send a Message</div>
+        <div class="form-subheading">I'll get back to you within 24 hours.</div>
+        <div class="fg-row">
+          <div class="fg"><label>First Name</label><input type="text" id="ff" placeholder="Your first name"/></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="fl" placeholder="Your last name"/></div>
+        </div>
+        <div class="fg"><label>Email Address</label><input type="email" id="fe" placeholder="you@company.com"/></div>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Service Needed</label>
+            <select id="fs">
+              <option value="">Select a service…</option>
+              <option>AI Research &amp; Automation</option>
+              <option>Web Development &amp; Design</option>
+              <option>Branding &amp; Digital Strategy</option>
+              <option>Social Media Management</option>
+              <option>Data Analytics &amp; Dashboard</option>
+              <option>Startup Consulting</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Budget Range</label>
+            <select id="fb">
+              <option value="">Select budget…</option>
+              <option>Under $200</option>
+              <option>$200 – $500</option>
+              <option>$500 – $1,000</option>
+              <option>$1,000+</option>
+              <option>Let's discuss</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Project Details</label><textarea id="fm" placeholder="Tell me about your project, goals, and timeline…"></textarea></div>
+        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo">DataWebX</span>
+        <p class="footer-desc">AI-powered digital solutions for businesses ready to grow smarter. Built by Shahzeen Akhund — Hyderabad, Pakistan.</p>
+        <div class="footer-soc">
+          <a href="https://www.fiverr.com/shahzeenakhund1" target="_blank" class="fsoc">f</a>
+          <a href="https://www.linkedin.com/in/shahzeenakhund" target="_blank" class="fsoc">in</a>
+          <a href="https://www.instagram.com/shahzeenakhund" target="_blank" class="fsoc">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">AI Automation</a></li>
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">Branding</a></li>
+          <li><a href="#services">Data Dashboards</a></li>
+          <li><a href="#services">Consulting</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:shahzeenakhund2001@gmail.com">Email Me</a></li>
+          <li><a href="https://www.fiverr.com/shahzeenakhund1" target="_blank">Hire on Fiverr</a></li>
+          <li><a href="https://www.linkedin.com/in/shahzeenakhund" target="_blank">LinkedIn</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 DataWebX · All rights reserved · Built by Shahzeen Akhund</span>
+      <span>Hyderabad, Pakistan 🇵🇰</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast">✅ Message sent! I'll reply within 24 hours.</div>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// Portfolio filters
+document.querySelectorAll('.pf').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pf').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Form submit
+function submitForm() {
+  const name = document.getElementById('ff').value.trim();
+  const email = document.getElementById('fe').value.trim();
+  if (!name || !email) { alert('Please fill in your name and email.'); return; }
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4500);
+  ['ff','fl','fe','fs','fb','fm'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+}
+
+// Mobile nav
+let navOpen = false;
+function toggleNav() {
+  navOpen = !navOpen;
+  const menu = document.querySelector('.nav-menu');
+  if (navOpen) {
+    Object.assign(menu.style, { display:'flex', flexDirection:'column', position:'absolute', top:'100%', left:'0', right:'0', background:'rgba(255,255,255,0.98)', padding:'1.5rem 2rem', gap:'0.25rem', borderBottom:'1px solid #e2e8f0', backdropFilter:'blur(16px)' });
+  } else { menu.removeAttribute('style'); }
+}
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.09)' : '0 1px 3px rgba(0,0,0,0.06)';
+});
+</script>
 </body>
 </html>
